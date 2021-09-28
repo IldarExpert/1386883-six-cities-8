@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Ильдар Шайхуллин](https://up.htmlacademy.ru/react/8/user/1386883).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/smart-grizzly).
 
 ---
 
