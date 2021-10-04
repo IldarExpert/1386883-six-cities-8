@@ -1,4 +1,4 @@
-function propertyNotLogged (): JSX.Element {
+function PropertyNotLogged (): JSX.Element {
   return (
     <div className="page">
       <header className="header">
@@ -281,4 +281,4 @@ function propertyNotLogged (): JSX.Element {
   );
 }
 
-export default propertyNotLogged;
+export default PropertyNotLogged;

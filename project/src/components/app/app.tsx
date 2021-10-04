@@ -1,12 +1,5 @@
 import Main from '../main/main';
-
-type AppProps = {
-  numberOfPlaces: number,
-  CardProperties:
-    {
-      id: number
-    }[]
-}
+import AppProps from './type';
 
 function App({numberOfPlaces, CardProperties}: AppProps): JSX.Element {
   return (
