@@ -1,5 +1,5 @@
 import Card from '../card/card';
-import MainProps from './type';
+import type MainProps from './type';
 
 function Main ({numberOfPlaces, CardProperties}: MainProps): JSX.Element {
   return (
