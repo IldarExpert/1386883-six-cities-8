@@ -1,12 +1,12 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import type AppProps from './type';
-import {AppRoute, AuthorizationStatus} from '../../consts';
 import Main from '../main/main';
 import Favorites from '../favorites/favorites';
 import Login from '../login/login';
 import Property from '../property/property';
 import NotFound404 from '../not-found-404/not-found-404';
 import PrivateRoute from '../private-route/private-route';
+import type AppProps from './type';
+import {AppRoute, AuthorizationStatus} from '../../enum';
 
 function App({numberOfPlaces, CardProperties}: AppProps): JSX.Element {
   return (
