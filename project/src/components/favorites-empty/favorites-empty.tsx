@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 function FavoritesEmpty (): JSX.Element {
   return (
     <div className="page page--favorites-empty">
@@ -5,9 +7,18 @@ function FavoritesEmpty (): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              <Link
+                className="header__logo-link"
+                to="/"
+              >
+                <img
+                  className="header__logo"
+                  src="img/logo.svg"
+                  alt="6 cities logo"
+                  width="81"
+                  height="41"
+                />
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -41,9 +52,18 @@ function FavoritesEmpty (): JSX.Element {
         </div>
       </main>
       <footer className="footer">
-        <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        <Link
+          className="footer__logo-link"
+          to="/"
+        >
+          <img
+            className="footer__logo"
+            src="img/logo.svg"
+            alt="6 cities logo"
+            width="64"
+            height="33"
+          />
+        </Link>
       </footer>
     </div>
   );

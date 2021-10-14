@@ -1,9 +1,8 @@
+import type {CardList} from '../../types/cardInfo';
+
 type MainProps = {
   numberOfPlaces: number,
-  CardProperties:
-    {
-      id: number
-    }[]
+  cardInfo: CardList,
 }
 
 export default MainProps;

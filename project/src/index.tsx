@@ -1,34 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import {cardInfo} from './mocks/offers';
 
 const Parameters = {
   numberOfPlaces: 300,
 };
 
-const CardProperties = [
-  {
-    id: Math.random(),
-  },
-  {
-    id: Math.random(),
-  },
-  {
-    id: Math.random(),
-  },
-  {
-    id: Math.random(),
-  },
-  {
-    id: Math.random(),
-  },
-];
-
 ReactDOM.render(
   <React.StrictMode>
     <App
       numberOfPlaces = {Parameters.numberOfPlaces}
-      CardProperties = {CardProperties}
+      cardInfo = {cardInfo}
     />
   </React.StrictMode>,
   document.getElementById('root'));

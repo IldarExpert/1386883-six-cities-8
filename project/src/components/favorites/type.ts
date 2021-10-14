@@ -1,8 +1,5 @@
 import type {CardList} from '../../types/cardInfo';
 
-type AppProps = {
-  numberOfPlaces: number,
+export type FavoritesProps = {
   cardInfo: CardList,
 }
-
-export default AppProps;

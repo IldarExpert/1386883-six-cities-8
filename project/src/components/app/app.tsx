@@ -1,21 +1,21 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Main from '../main/main';
 import Favorites from '../favorites/favorites';
 import Login from '../login/login';
-import Property from '../property/property';
+import Main from '../main/main';
 import NotFound404 from '../not-found-404/not-found-404';
+import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
 import type AppProps from './type';
 import {AppRoute, AuthorizationStatus} from '../../enum';
 
-function App({numberOfPlaces, CardProperties}: AppProps): JSX.Element {
+function App({numberOfPlaces, cardInfo}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <Main
             numberOfPlaces = {numberOfPlaces}
-            CardProperties = {CardProperties}
+            cardInfo = {cardInfo}
           />
         </Route>
         <Route exact path={AppRoute.Room}>
@@ -24,8 +24,8 @@ function App({numberOfPlaces, CardProperties}: AppProps): JSX.Element {
         <PrivateRoute
           exact
           path = {AppRoute.Favorites}
-          render = {() =>  <Favorites />}
-          authorizationStatus = {AuthorizationStatus.NoAuth}
+          render = {() =>  <Favorites cardInfo = {cardInfo} />}
+          authorizationStatus = {AuthorizationStatus.Auth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.SignIn}>
