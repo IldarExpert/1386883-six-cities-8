@@ -11,7 +11,13 @@ function FormComment (): JSX.Element {
         <li className="reviews__item">
           <div className="reviews__user user">
             <div className="reviews__avatar-wrapper user__avatar-wrapper">
-              <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
+              <img
+                className="reviews__avatar user__avatar"
+                src="img/avatar-max.jpg"
+                width="54"
+                height="54"
+                alt="Reviews avatar"
+              />
             </div>
             <span className="reviews__user-name">
               Max
@@ -40,14 +46,24 @@ function FormComment (): JSX.Element {
             value="5"
             id="5-stars"
             type="radio"
-            onClick={({target}: MouseEvent<HTMLInputElement>) => {
-              const ratingInput = target as HTMLInputElement;
-              setRating(ratingInput.value);
-            }}
+            onClick={
+              ({target}: MouseEvent<HTMLInputElement>) => {
+                const ratingInput = target as HTMLInputElement;
+                setRating(ratingInput.value);
+              }
+            }
             data-rating={rating}
           />
-          <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-            <svg className="form__star-image" width="37" height="33">
+          <label
+            htmlFor="5-stars"
+            className="reviews__rating-label form__rating-label"
+            title="perfect"
+          >
+            <svg
+              className="form__star-image"
+              width="37"
+              height="33"
+            >
               <use xlinkHref="#icon-star"></use>
             </svg>
           </label>
@@ -64,8 +80,16 @@ function FormComment (): JSX.Element {
             }}
             data-rating={rating}
           />
-          <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-            <svg className="form__star-image" width="37" height="33">
+          <label
+            htmlFor="4-stars"
+            className="reviews__rating-label form__rating-label"
+            title="good"
+          >
+            <svg
+              className="form__star-image"
+              width="37"
+              height="33"
+            >
               <use xlinkHref="#icon-star"></use>
             </svg>
           </label>
@@ -76,14 +100,24 @@ function FormComment (): JSX.Element {
             value="3"
             id="3-stars"
             type="radio"
-            onClick={({target}: MouseEvent<HTMLInputElement>) => {
-              const ratingInput = target as HTMLInputElement;
-              setRating(ratingInput.value);
-            }}
+            onClick={
+              ({target}: MouseEvent<HTMLInputElement>) => {
+                const ratingInput = target as HTMLInputElement;
+                setRating(ratingInput.value);
+              }
+            }
             data-rating={rating}
           />
-          <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-            <svg className="form__star-image" width="37" height="33">
+          <label
+            htmlFor="3-stars"
+            className="reviews__rating-label form__rating-label"
+            title="not bad"
+          >
+            <svg
+              className="form__star-image"
+              width="37"
+              height="33"
+            >
               <use xlinkHref="#icon-star"></use>
             </svg>
           </label>
@@ -94,14 +128,24 @@ function FormComment (): JSX.Element {
             value="2"
             id="2-stars"
             type="radio"
-            onClick={({target}: MouseEvent<HTMLInputElement>) => {
-              const ratingInput = target as HTMLInputElement;
-              setRating(ratingInput.value);
-            }}
+            onClick={
+              ({target}: MouseEvent<HTMLInputElement>) => {
+                const ratingInput = target as HTMLInputElement;
+                setRating(ratingInput.value);
+              }
+            }
             data-rating={rating}
           />
-          <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-            <svg className="form__star-image" width="37" height="33">
+          <label
+            htmlFor="2-stars"
+            className="reviews__rating-label form__rating-label"
+            title="badly"
+          >
+            <svg
+              className="form__star-image"
+              width="37"
+              height="33"
+            >
               <use xlinkHref="#icon-star"></use>
             </svg>
           </label>
@@ -112,14 +156,24 @@ function FormComment (): JSX.Element {
             value="1"
             id="1-star"
             type="radio"
-            onClick={({target}: MouseEvent<HTMLInputElement>) => {
-              const ratingInput = target as HTMLInputElement;
-              setRating(ratingInput.value);
-            }}
+            onClick={
+              ({target}: MouseEvent<HTMLInputElement>) => {
+                const ratingInput = target as HTMLInputElement;
+                setRating(ratingInput.value);
+              }
+            }
             data-rating={rating}
           />
-          <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-            <svg className="form__star-image" width="37" height="33">
+          <label
+            htmlFor="1-star"
+            className="reviews__rating-label form__rating-label"
+            title="terribly"
+          >
+            <svg
+              className="form__star-image"
+              width="37"
+              height="33"
+            >
               <use xlinkHref="#icon-star"></use>
             </svg>
           </label>
@@ -129,9 +183,11 @@ function FormComment (): JSX.Element {
           id="review"
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
-          onChange = {({target}: ChangeEvent<HTMLTextAreaElement>) => {
-            setReview(target.value);
-          }}
+          onChange = {
+            ({target}: ChangeEvent<HTMLTextAreaElement>) => {
+              setReview(target.value);
+            }
+          }
           value = {review}
         >
         </textarea>
@@ -139,7 +195,13 @@ function FormComment (): JSX.Element {
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled
+          >
+            Submit
+          </button>
         </div>
       </form>
     </section>

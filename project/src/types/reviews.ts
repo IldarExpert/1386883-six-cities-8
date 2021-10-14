@@ -13,6 +13,4 @@ export type Review = (
   }
 );
 
-export type Reviews = (
-  Review[]
-);
+export type Reviews = Review[];

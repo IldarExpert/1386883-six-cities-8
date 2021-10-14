@@ -4,5 +4,5 @@ export type CardProps = {
   oneCard: CardOne,
   onMouseEnter: () => void,
   onMouseLeave: () => void,
-  activeId: number
+  activeId: number,
 }
