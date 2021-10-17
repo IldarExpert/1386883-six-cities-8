@@ -1,8 +1,20 @@
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import CardList from '../card-list/card-list';
+import Map from '../map/map';
 import type MainProps from './type';
+import type {CardOne} from '../../types/cardInfo';
 
 function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
+
+  const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
+
+  const onListItemHover = (activeId: number) => {
+    const currentPoint = cardInfo.find((point) => point.id === activeId);
+
+    setSelectedPoint(currentPoint);
+  };
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -131,10 +143,17 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <CardList cardInfo={cardInfo}/>
+              <CardList
+                cardInfo={cardInfo}
+                onListItemHover={onListItemHover}
+              />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                city={cardInfo[0].city}
+                cardInfo={cardInfo}
+                selectedPoint={selectedPoint}
+              />
             </div>
           </div>
         </div>
