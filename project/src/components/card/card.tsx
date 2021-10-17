@@ -7,6 +7,7 @@ function Card({oneCard, onMouseEnter, onMouseLeave}: CardProps): JSX.Element {
       className="cities__place-card place-card"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-id={oneCard.id}
     >
       {oneCard.isPremium ? (
         <div className="place-card__mark">
