@@ -4,7 +4,7 @@ import type {Reviews} from '../../types/reviews';
 type AppProps = {
   numberOfPlaces: number,
   cardInfo: CardList,
-  reviews: Reviews
+  reviews: Reviews,
 }
 
 export default AppProps;

@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
-import FormComment from '../form-comment/form-comment';
-import ReviewsList from '../reviews-list/reviews-list';
 import CardList from '../card-list/card-list';
+import FormComment from '../form-comment/form-comment';
 import Map from '../map/map';
 import PropertyProps from './type';
+import ReviewsList from '../reviews-list/reviews-list';
 import type {CardOne} from '../../types/cardInfo';
 
 
