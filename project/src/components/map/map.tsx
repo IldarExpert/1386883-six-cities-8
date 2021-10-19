@@ -19,7 +19,7 @@ const currentCustomIcon = new Icon({
   iconAncor: [20, 20],
 });
 
-function Map ({city, cardInfo, selectedPoint}: MapProps): JSX.Element {
+function Map ({city, cardInfo, selectedPoint, classIn, styleIn}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -42,11 +42,8 @@ function Map ({city, cardInfo, selectedPoint}: MapProps): JSX.Element {
 
 
   return (
-    <section className="cities__map map"
-      style = {{
-        height: '100%',
-        minHeight: '500px',
-      }}
+    <section className={classIn}
+      style = {styleIn}
       ref={mapRef}
     >
     </section>

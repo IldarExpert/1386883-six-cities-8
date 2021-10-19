@@ -14,13 +14,13 @@ export const cardInfo: CardList = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     host: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/1.jpg',
       id: 3,
       isPro: true,
       name: 'Angelina',
     },
     id: 1,
-    images: ['img/1.png', 'img/2.png'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: false,
     isPremium: false,
     location: {
@@ -48,13 +48,13 @@ export const cardInfo: CardList = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating2', 'Kitchen2', 'Cable TV2', 'Washing machine2', 'Coffee machine2', 'Dishwasher2'],
     host: {
-      avatarUrl: 'img/2.png',
+      avatarUrl: 'img/2.jpg',
       id: 4,
       isPro: false,
       name: 'Angelina2',
     },
     id: 2,
-    images: ['img/2.png', 'img/3.png'],
+    images: ['img/apartment-02.jpg', 'img/apartment-03.jpg'],
     isFavorite: true,
     isPremium: true,
     location: {
@@ -82,13 +82,13 @@ export const cardInfo: CardList = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating3', 'Kitchen3', 'Cable TV3', 'Washing machine3', 'Coffee machine3', 'Dishwasher3'],
     host: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/1.jpg',
       id: 3,
       isPro: true,
       name: 'Angelina',
     },
     id: 3,
-    images: ['img/4.png', 'img/5.png'],
+    images: ['apartment-03.jpg', 'apartment-04.jpg'],
     isFavorite: true,
     isPremium: false,
     location: {
@@ -116,13 +116,13 @@ export const cardInfo: CardList = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating5', 'Kitchen5', 'Cable TV5', 'Washing machine5', 'Coffee machine5', 'Dishwasher5'],
     host: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/2.jpg',
       id: 5,
       isPro: true,
       name: 'Angelina',
     },
     id: 5,
-    images: ['img/7.png', 'img/7.png'],
+    images: ['img/apartment-01.jpg', 'img/apartment-03.jpg'],
     isFavorite: true,
     isPremium: false,
     location: {

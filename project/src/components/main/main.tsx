@@ -143,16 +143,23 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <CardList
-                cardInfo={cardInfo}
-                onListItemHover={onListItemHover}
-              />
+              <div className="cities__places-list places__list tabs__content">
+                <CardList
+                  cardInfo={cardInfo}
+                  onListItemHover={onListItemHover}
+                />
+              </div>
             </section>
             <div className="cities__right-section">
               <Map
                 city={cardInfo[0].city}
                 cardInfo={cardInfo}
                 selectedPoint={selectedPoint}
+                classIn = {'cities__map map'}
+                styleIn = {{
+                  height: '100%',
+                  minHeight: '500px',
+                }}
               />
             </div>
           </div>

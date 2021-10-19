@@ -11,7 +11,7 @@ function CardList ({cardInfo, onListItemHover}: CardListType): JSX.Element {
   };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {cardInfo.map((oneCard) => (
         <Card
           key={oneCard.id}
@@ -21,7 +21,7 @@ function CardList ({cardInfo, onListItemHover}: CardListType): JSX.Element {
           data-id={activeCard}
         />
       ))}
-    </div>
+    </>
   );
 }
 
