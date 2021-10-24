@@ -1,11 +1,32 @@
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {Dispatch} from 'redux';
+import {connect, ConnectedProps} from 'react-redux';
+import {changeCity} from '../../store/action';
 import CardList from '../card-list/card-list';
+import CityList from '../city-list/city-list';
 import Map from '../map/map';
 import type MainProps from './type';
 import type {CardOne} from '../../types/cardInfo';
+import {State} from '../../types/state';
+import {Actions} from '../../types/action';
 
-function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
+const mapStateToProps = ({city}: State) => ({
+  city: city,
+});
+
+const mapDispatchToProps = (dispath: Dispatch<Actions>) => ({
+  onClickCity (city: string) {
+    dispath(changeCity(city));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & MainProps;
+
+function Main ({cardInfo, city, onClickCity}: ConnectedComponentProps): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
 
@@ -14,6 +35,8 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
 
     setSelectedPoint(currentPoint);
   };
+
+  const oneCityOffers = cardInfo.filter((cardOne) => cardOne.city.name === city);
 
   return (
     <div className="page page--gray page--main">
@@ -57,46 +80,13 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active" href="/#">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+          <CityList onClickCity={onClickCity} city={city}/>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{numberOfPlaces} places to stay in Amsterdam</b>
+              <b className="places__found">{oneCityOffers.length} places to stay in {city}</b>
               <form
                 className="places__sorting"
                 action="#"
@@ -145,22 +135,24 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <CardList
-                  cardInfo={cardInfo}
+                  cardInfo={oneCityOffers}
                   onListItemHover={onListItemHover}
                 />
               </div>
             </section>
             <div className="cities__right-section">
-              <Map
-                city={cardInfo[0].city}
-                cardInfo={cardInfo}
-                selectedPoint={selectedPoint}
-                classIn = {'cities__map map'}
-                styleIn = {{
-                  height: '100%',
-                  minHeight: '500px',
-                }}
-              />
+              {oneCityOffers[0] ?
+                <Map
+                  city={oneCityOffers[0].city}
+                  cardInfo={oneCityOffers}
+                  selectedPoint={selectedPoint}
+                  classIn = {'cities__map map'}
+                  styleIn = {{
+                    height: '100%',
+                    minHeight: '500px',
+                  }}
+                />
+                : ''}
             </div>
           </div>
         </div>
@@ -169,4 +161,5 @@ function Main ({numberOfPlaces, cardInfo}: MainProps): JSX.Element {
   );
 }
 
-export default Main;
+export {Main};
+export default connector(Main);
