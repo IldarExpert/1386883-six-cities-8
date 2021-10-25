@@ -8,14 +8,13 @@ import PrivateRoute from '../private-route/private-route';
 import type AppProps from './type';
 import {AppRoute, AuthorizationStatus} from '../../enum';
 
-function App({numberOfPlaces, cardInfo, reviews}: AppProps): JSX.Element {
+function App({cardInfo, reviews}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <Main
-            numberOfPlaces = {numberOfPlaces}
-            cardInfo = {cardInfo}
+            cardInfo={cardInfo}
           />
         </Route>
         <Route exact path={AppRoute.Room}>

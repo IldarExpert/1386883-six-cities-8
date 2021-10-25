@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 import {cardInfo} from './mocks/offers';
 import {reviews} from './mocks/reviews';
+import {reducer} from './store/reducer';
 
-const Parameters = {
-  numberOfPlaces: 300,
-};
+const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      numberOfPlaces = {Parameters.numberOfPlaces}
-      cardInfo = {cardInfo}
-      reviews = {reviews}
-    />
+    <Provider store={store}>
+      <App
+        cardInfo={cardInfo}
+        reviews={reviews}
+      />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
