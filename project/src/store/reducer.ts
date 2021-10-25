@@ -10,7 +10,7 @@ const initialState = {
 };
 
 
-const reduser = (state: State = initialState, action: Actions): State => {
+const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeCurrentCity:
       return {...state, city: action.payload, cardList: cardInfo.filter((cardOne) => cardOne.city.name === action.payload)};
@@ -19,4 +19,4 @@ const reduser = (state: State = initialState, action: Actions): State => {
   }
 };
 
-export {reduser};
+export {reducer};

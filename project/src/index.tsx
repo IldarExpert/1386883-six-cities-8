@@ -6,9 +6,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import App from './components/app/app';
 import {cardInfo} from './mocks/offers';
 import {reviews} from './mocks/reviews';
-import {reduser} from './store/reducer';
+import {reducer} from './store/reducer';
 
-const store = createStore(reduser, composeWithDevTools());
+const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>

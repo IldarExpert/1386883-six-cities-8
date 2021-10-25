@@ -15,9 +15,9 @@ const mapStateToProps = ({city}: State) => ({
   city: city,
 });
 
-const mapDispatchToProps = (dispath: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onClickCity (city: string) {
-    dispath(changeCity(city));
+    dispatch(changeCity(city));
   },
 });
 
