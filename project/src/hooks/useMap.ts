@@ -5,9 +5,9 @@ import type {City} from '../types/cardInfo';
 function useMap (mapRef: MutableRefObject<HTMLElement | null>, city: City):  leaflet.Map | null {
   const [map, setMap] = useState<leaflet.Map | null>(null);
 
-
   useEffect ( () => {
     if (mapRef.current !== null && map === null) {
+
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: city.location.latitude,
@@ -25,6 +25,8 @@ function useMap (mapRef: MutableRefObject<HTMLElement | null>, city: City):  lea
       ).addTo(instance);
 
       setMap(instance);
+    } else {
+      map?.setView([city.location.latitude, city.location.longitude], city.location.zoom);
     }
   }, [mapRef, map, city]);
 
