@@ -14,10 +14,10 @@ function CardList ({cardInfo, onListItemHover}: CardListType): JSX.Element {
     <>
       {cardInfo.map((oneCard) => (
         <Card
-          key={oneCard.id}
+          key={`Card${oneCard.id}`}
           oneCard={oneCard}
           onMouseEnter = {() => onHover(oneCard.id)}
-          onMouseLeave = {() => setActiveCard(0)}
+          onMouseLeave = {() => onHover(0)}
           data-id={activeCard}
         />
       ))}

@@ -11,8 +11,9 @@ import type {CardOne} from '../../types/cardInfo';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 
-const mapStateToProps = ({city}: State) => ({
+const mapStateToProps = ({city, cardList}: State) => ({
   city: city,
+  cardList: cardList,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -26,7 +27,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & MainProps;
 
-function Main ({cardInfo, city, onClickCity}: ConnectedComponentProps): JSX.Element {
+function Main ({cardInfo, cardList, city, onClickCity}: ConnectedComponentProps): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
 
@@ -35,8 +36,6 @@ function Main ({cardInfo, city, onClickCity}: ConnectedComponentProps): JSX.Elem
 
     setSelectedPoint(currentPoint);
   };
-
-  const oneCityOffers = cardInfo.filter((cardOne) => cardOne.city.name === city);
 
   return (
     <div className="page page--gray page--main">
@@ -86,7 +85,7 @@ function Main ({cardInfo, city, onClickCity}: ConnectedComponentProps): JSX.Elem
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{oneCityOffers.length} places to stay in {city}</b>
+              <b className="places__found">{cardList.length} places to stay in {city}</b>
               <form
                 className="places__sorting"
                 action="#"
@@ -135,16 +134,16 @@ function Main ({cardInfo, city, onClickCity}: ConnectedComponentProps): JSX.Elem
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <CardList
-                  cardInfo={oneCityOffers}
+                  cardInfo={cardList}
                   onListItemHover={onListItemHover}
                 />
               </div>
             </section>
             <div className="cities__right-section">
-              {oneCityOffers[0] ?
+              {cardList[0] ?
                 <Map
-                  city={oneCityOffers[0].city}
-                  cardInfo={oneCityOffers}
+                  city={cardList[0].city}
+                  cardInfo={cardList}
                   selectedPoint={selectedPoint}
                   classIn = {'cities__map map'}
                   styleIn = {{

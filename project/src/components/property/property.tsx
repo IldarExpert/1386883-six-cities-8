@@ -1,14 +1,25 @@
 import {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
+import {connect, ConnectedProps} from 'react-redux';
 import CardList from '../card-list/card-list';
 import FormComment from '../form-comment/form-comment';
 import Map from '../map/map';
 import PropertyProps from './type';
 import ReviewsList from '../reviews-list/reviews-list';
 import type {CardOne} from '../../types/cardInfo';
+import {State} from '../../types/state';
 
 
-function Property ({reviews, cardInfo}: PropertyProps): JSX.Element {
+const mapStateToProps = ({cardList}: State) => ({
+  cardInfo: cardList,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+
+function Property ({reviews, cardInfo}: PropertyProps & PropsFromRedux): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
 
   const onListItemHover = (activeId: number) => {
@@ -179,4 +190,5 @@ function Property ({reviews, cardInfo}: PropertyProps): JSX.Element {
   );
 }
 
-export default Property;
+export {Property};
+export default connector(Property);
