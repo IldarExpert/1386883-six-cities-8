@@ -6,14 +6,16 @@ import {changeCity} from '../../store/action';
 import CardList from '../card-list/card-list';
 import CityList from '../city-list/city-list';
 import Map from '../map/map';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import type MainProps from './type';
 import type {CardOne} from '../../types/cardInfo';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 
-const mapStateToProps = ({city, cardList}: State) => ({
+const mapStateToProps = ({city, cardList, authorizationStatus}: State) => ({
   city: city,
   cardList: cardList,
+  authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -27,7 +29,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & MainProps;
 
-function Main ({cardInfo, cardList, city, onClickCity}: ConnectedComponentProps): JSX.Element {
+function Main ({cardInfo, cardList, city, onClickCity, authorizationStatus}: ConnectedComponentProps): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
 
@@ -58,18 +60,30 @@ function Main ({cardInfo, cardList, city, onClickCity}: ConnectedComponentProps)
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="/#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="/#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
+                {authorizationStatus === AuthorizationStatus.Auth ?
+                  <>
+                    <li className="header__nav-item user">
+                      <a className="header__nav-link header__nav-link--profile" href="/#">
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      </a>
+                    </li>
+                    <li className="header__nav-item">
+                      <a className="header__nav-link" href="/#">
+                        <span className="header__signout">Sign out</span>
+                      </a>
+                    </li>
+                  </>
+                  :
+                  <li className="header__nav-item">
+                    <Link
+                      className="header__nav-link"
+                      to={AppRoute.SignIn}
+                    >
+                      <span className="header__signout">Sign in</span>
+                    </Link>
+                  </li>}
               </ul>
             </nav>
           </div>

@@ -6,7 +6,7 @@ import NotFound404 from '../not-found-404/not-found-404';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
 import type AppProps from './type';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import { connect, ConnectedProps } from 'react-redux';
 import { State } from '../../types/state';
 import LoadingScreen from '../loading-screen/loading-screen';
@@ -39,14 +39,12 @@ function App({cardInfo, reviews, authorizationStatus, isDataLoaded}: AppProps & 
         <Route exact path={AppRoute.Room}>
           <Property
             reviews = {reviews}
-            // cardInfo = {cardInfo}
           />
         </Route>
         <PrivateRoute
           exact
           path = {AppRoute.Favorites}
           render = {() => <Favorites cardInfo = {cardInfo} />}
-          authorizationStatus = {AuthorizationStatus.Auth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.SignIn}>

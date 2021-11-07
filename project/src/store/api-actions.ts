@@ -1,3 +1,4 @@
+// import {useHistory} from 'react-router-dom';
 import { ApiRoute, AuthorizationStatus } from '../const';
 import { ThunkActionResult } from '../types/action';
 import { CardOneFromServer } from '../types/cardInfo';
@@ -13,8 +14,12 @@ export const fetchHotelsAction = (): ThunkActionResult =>
 
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(ApiRoute.Login).then(() => {
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    await api.get(ApiRoute.Login).then((data) => {
+      if (data.status) {
+        dispatch(requireAuthorization(AuthorizationStatus.Auth));
+        return;
+      }
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     });
   };
 
