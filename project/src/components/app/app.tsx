@@ -39,6 +39,7 @@ function App({cardInfo, reviews, authorizationStatus, isDataLoaded}: AppProps & 
         <Route exact path={AppRoute.Room}>
           <Property
             reviews = {reviews}
+            cardInfo = {cardInfo}
           />
         </Route>
         <PrivateRoute

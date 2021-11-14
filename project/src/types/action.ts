@@ -4,28 +4,40 @@ import { State } from '../types/state';
 import {
   changeCity,
   loadCityList,
+  loadOneOffer,
   requireAuthorization,
-  requireLogout
+  requireLogout,
+  loadComments,
+  loadNearby,
+  loadOneOfferError,
+  changeLoadCommentsStatus,
+  sortCardListAction
 } from '../store/action';
 
 export enum ActionType {
   ChangeCurrentCity = 'main/changeCurrentCity',
   LoadCityList = 'data/loadCityList',
+  LoadOneCity = 'data/loadOneCity',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
+  LoadComments = 'data/loadComments',
+  LoadNearby = 'data/loadNearby',
+  LoadOneOfferError = 'data/loadOneOfferError',
+  ChangeLoadCommentsStatus = 'review/changeLoadCommentsStatus',
+  SortCardList = 'main/sortCardList'
 }
-
-// export type ChangeCurrentCityAction = {
-//   type: ActionType.ChangeCurrentCity,
-//   payload: string,
-// };
 
 export type Actions =
 | ReturnType<typeof changeCity>
 | ReturnType<typeof loadCityList>
+| ReturnType<typeof loadOneOffer>
 | ReturnType<typeof requireAuthorization>
-| ReturnType<typeof requireLogout>;
-// | ChangeCurrentCityAction;
+| ReturnType<typeof requireLogout>
+| ReturnType<typeof loadComments>
+| ReturnType<typeof loadNearby>
+| ReturnType<typeof loadOneOfferError>
+| ReturnType<typeof changeLoadCommentsStatus>
+| ReturnType<typeof sortCardListAction>;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 

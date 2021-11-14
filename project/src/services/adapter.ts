@@ -1,4 +1,5 @@
 import type {CardOneFromServer} from '../types/cardInfo';
+import type {ReviewFromServer} from '../types/reviews';
 
 export const convertOneCity = (oneCity: CardOneFromServer) => ({
   bedrooms: oneCity.bedrooms,
@@ -36,3 +37,18 @@ export const convertOneCity = (oneCity: CardOneFromServer) => ({
 });
 
 export const convertCityList = (cityList: CardOneFromServer[]) => cityList.map(convertOneCity);
+
+export const convertOneComment = (oneComment: ReviewFromServer) => (  {
+  comment: oneComment.comment,
+  date: oneComment.date,
+  id: oneComment.id,
+  rating: oneComment.rating,
+  user: {
+    avatarUrl: oneComment.user.avatar_url,
+    id: oneComment.user.id,
+    isPro: oneComment.user.is_pro,
+    name: oneComment.user.name,
+  },
+});
+
+export const convertComments = (comments: ReviewFromServer[]) => comments.map(convertOneComment);
