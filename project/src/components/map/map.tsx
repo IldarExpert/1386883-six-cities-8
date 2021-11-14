@@ -22,6 +22,7 @@ const currentCustomIcon = new Icon({
 function Map ({city, cardInfo, selectedPoint, classIn, styleIn}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const markersLayer = new leaflet.LayerGroup();
 
   useEffect(() => {
     if (map) {
@@ -35,8 +36,13 @@ function Map ({city, cardInfo, selectedPoint, classIn, styleIn}: MapProps): JSX.
           selectedPoint !== undefined && item.id === selectedPoint.id
             ? currentCustomIcon
             : defaultCustomIcon,
-        ).addTo(map);
+        );
+        markersLayer.addLayer(marker);
       });
+      markersLayer.addTo(map);
+      return () => {
+        markersLayer.clearLayers();
+      };
     }
   }, [map, cardInfo, selectedPoint]);
 
