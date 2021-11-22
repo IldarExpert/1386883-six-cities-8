@@ -1,17 +1,20 @@
 import {Link} from 'react-router-dom';
-import {connect, ConnectedProps} from 'react-redux';
-import { State } from '../../types/state';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import { getAuthorizationStatus, getAuthData } from '../../store/user-reduser/selectors';
+import { logoutAction } from '../../store/api-actions';
 
-const mapStateToProps = ({authorizationStatus}: State) => ({
-  authorizationStatus,
-});
+function Header (): JSX.Element {
 
-const connector = connect(mapStateToProps);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const authData = useSelector(getAuthData);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
+  const dispatch = useDispatch();
 
-function Header ({authorizationStatus}: PropsFromRedux): JSX.Element {
+  const handleLogOut = () => {
+    dispatch(logoutAction());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -19,15 +22,16 @@ function Header ({authorizationStatus}: PropsFromRedux): JSX.Element {
           <div className="header__left">
             <Link
               className="header__logo-link header__logo-link--active"
-              to="/"
+              to={AppRoute.Main}
             >
-              <img
-                className="header__logo"
-                src="img/logo.svg"
-                alt="6 cities logo"
-                width="81"
-                height="41"
-              />
+              {authorizationStatus === AuthorizationStatus.Auth?
+                <img
+                  className="header__logo"
+                  src={authData.avatarUrl}
+                  alt="6 cities logo"
+                  width="81"
+                  height="41"
+                /> : ''}
             </Link>
           </div>
           <nav className="header__nav">
@@ -35,14 +39,21 @@ function Header ({authorizationStatus}: PropsFromRedux): JSX.Element {
               {authorizationStatus === AuthorizationStatus.Auth ?
                 <>
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="/#">
+                    <Link
+                      className="header__nav-link header__nav-link--profile"
+                      to={AppRoute.Favorites}
+                    >
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
+                      <span className="header__user-name user__name">{authData.email}</span>
+                    </Link>
                   </li>
                   <li className="header__nav-item">
-                    <a className="header__nav-link" href="/#">
+                    <a
+                      className="header__nav-link"
+                      href={AppRoute.Main}
+                      onClick={handleLogOut}
+                    >
                       <span className="header__signout">Sign out</span>
                     </a>
                   </li>
@@ -64,5 +75,4 @@ function Header ({authorizationStatus}: PropsFromRedux): JSX.Element {
   );
 }
 
-export {Header};
-export default connector(Header);
+export default Header;

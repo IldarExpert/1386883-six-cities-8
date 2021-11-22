@@ -3,9 +3,10 @@ import {connect, ConnectedProps} from 'react-redux';
 import { State } from '../../types/state';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import PrivateRouteProps from './type';
+import { getAuthorizationStatus } from '../../store/user-reduser/selectors';
 
-const mapStateToProps = ({authorizationStatus}: State) => ({
-  authorizationStatus,
+const mapStateToProps = (state: State) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const connector = connect(mapStateToProps);

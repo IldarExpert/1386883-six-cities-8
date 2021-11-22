@@ -5,9 +5,8 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './components/app/app';
-// import {cardInfo} from './mocks/offers';
-import {reviews} from './mocks/reviews';
-import {reducer} from './store/reducer';
+// import {reviews} from './mocks/reviews';
+import {rootReducer} from './store/root-reducer';
 import {requireAuthorization} from './store/action';
 import {checkAuthAction, fetchHotelsAction} from './store/api-actions';
 import {createAPI} from './services/api';
@@ -20,7 +19,7 @@ const api = createAPI(
 );
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
   ),
@@ -32,10 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        // cardInfo={cardInfo}
-        reviews={reviews}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

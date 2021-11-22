@@ -7,9 +7,10 @@ import { State } from '../../types/state';
 import type {ThunkAppDispatch} from '../../types/action';
 import { AuthData } from '../../types/auth-data';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import { getAuthorizationStatus } from '../../store/user-reduser/selectors';
 
-const mapStateToProps = ({authorizationStatus}: State) => ({
-  authorizationStatus,
+const mapStateToProps = (state: State) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -37,6 +38,29 @@ function Login ({onsubmit, authorizationStatus}: PropsFromRedux): JSX.Element {
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
+    }
+  };
+
+  const handleValidityInput = (evt: FormEvent<HTMLFormElement>) => {
+    let countPasswordWord = 0;
+    let countPasswordNumber = 0;
+    if (passwordRef.current !== null){
+      if(/[A-Z]/.test(passwordRef.current.value)) {countPasswordWord++;}
+      if(/[a-z]/.test(passwordRef.current.value)) {countPasswordWord++;}
+      if(/[А-Я]/.test(passwordRef.current.value)) {countPasswordWord++;}
+      if(/[а-я]/.test(passwordRef.current.value)) {countPasswordWord++;}
+      if (countPasswordWord === 0) {
+        passwordRef.current.setCustomValidity('Пароль должен содержать как минимум 1 букву');
+      }
+
+      if(/\d/.test(passwordRef.current.value)) {countPasswordNumber++;}
+      if (countPasswordNumber === 0) {
+        passwordRef.current.setCustomValidity('Пароль должен содержать как минимум 1 цифру');
+      }
+
+      if (countPasswordNumber !== 0 && countPasswordWord !== 0) {
+        passwordRef.current.setCustomValidity('');
+      }
     }
   };
 
@@ -76,6 +100,7 @@ function Login ({onsubmit, authorizationStatus}: PropsFromRedux): JSX.Element {
               action="#"
               method="post"
               onSubmit={handleSubmit}
+              onChange={handleValidityInput}
             >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>

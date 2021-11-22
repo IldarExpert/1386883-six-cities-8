@@ -1,8 +1,8 @@
-import type {CardList} from '../../types/cardInfo';
+// import type {CardList} from '../../types/cardInfo';
 import type {Reviews} from '../../types/reviews';
 
 type AppProps = {
-  cardInfo: CardList,
+  // cardInfo: CardList,
   reviews: Reviews,
 }
 

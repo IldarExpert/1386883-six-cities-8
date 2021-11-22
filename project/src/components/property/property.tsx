@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import {useParams} from 'react-router-dom';
+import { useEffect } from 'react';
+import {useParams, useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {connect, ConnectedProps} from 'react-redux';
 
@@ -8,6 +8,9 @@ import {
   fetchOfferNearbyAction,
   fetchOfferCommentsAction
 } from '../../store/api-actions';
+import { sendFavoriteAction } from '../../store/api-actions';
+import { getComments, getLoadOneOfferError, getNearbyOffers, getOneOffer } from '../../store/offer-reducer/selectors';
+import { getAuthorizationStatus } from '../../store/user-reduser/selectors';
 
 import CardList from '../card-list/card-list';
 import FormComment from '../form-comment/form-comment';
@@ -16,19 +19,18 @@ import NotFound404 from '../not-found-404/not-found-404';
 import ReviewsList from '../reviews-list/reviews-list';
 import Header from '../header/header';
 
-import type {CardOne} from '../../types/cardInfo';
+// import type {CardOne} from '../../types/cardInfo';
 import PropertyProps from './type';
 import {State} from '../../types/state';
 
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, AppRoute } from '../../const';
 
-
-const mapStateToProps = ({oneOffer, nearbyOffers, comments, loadOneOfferError, authorizationStatus}: State) => ({
-  oneOffer,
-  comments,
-  nearbyOffers,
-  loadOneOfferError,
-  authorizationStatus,
+const mapStateToProps = (state: State) => ({
+  oneOffer: getOneOffer(state),
+  comments: getComments(state),
+  nearbyOffers: getNearbyOffers(state),
+  loadOneOfferError: getLoadOneOfferError(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const connector = connect(mapStateToProps);
@@ -37,6 +39,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comments, authorizationStatus}: PropertyProps & PropsFromRedux): JSX.Element {
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const {id} = useParams<{id: string}>();
 
@@ -44,16 +47,25 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
     dispatch(fetchOneOfferAction(id));
     dispatch(fetchOfferNearbyAction(id));
     dispatch(fetchOfferCommentsAction(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, oneOffer]);
 
 
-  const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
-
-  const onListItemHover = (activeId: number) => {
-    const currentPoint = cardInfo?.find((point) => point.id === activeId);
-
-    setSelectedPoint(currentPoint);
+  const handleFavorites = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth){
+      dispatch(sendFavoriteAction(oneOffer.id, oneOffer.isFavorite));
+      return;
+    }
+    history.push(AppRoute.SignIn);
   };
+
+
+  // const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
+
+  // const onListItemHover = (activeId: number) => {
+  //   const currentPoint = cardInfo?.find((point) => point.id === activeId);
+
+  //   // setSelectedPoint(currentPoint);
+  // };
 
   const propertyItem = oneOffer;
 
@@ -83,7 +95,11 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
                   <h1 className="property__name">
                     {propertyItem?.title}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
+                  <button
+                    className={`${oneOffer.isFavorite? 'property__bookmark-button--active': ''} property__bookmark-button button`}
+                    type="button"
+                    onClick={handleFavorites}
+                  >
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -156,7 +172,7 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
             <Map
               city={oneOffer.city}
               cardInfo={nearbyOffers}
-              selectedPoint={selectedPoint}
+              selectedPoint={undefined}
               classIn = {'property__map map'}
               styleIn = {{
                 height: '100%',
@@ -171,7 +187,7 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
               <div className="near-places__list places__list">
                 <CardList
                   cardInfo={nearbyOffers}
-                  onListItemHover={onListItemHover}
+                  onListItemHover={undefined}
                 />
               </div>
 
