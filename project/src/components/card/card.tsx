@@ -1,7 +1,17 @@
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import { sendFavoriteAction } from '../../store/api-actions';
 import type {CardProps} from './type';
 
 function Card({oneCard, onMouseEnter, onMouseLeave}: CardProps): JSX.Element {
+
+
+  const dispatch = useDispatch();
+
+  const handleFavorites = () => {
+    dispatch(sendFavoriteAction(oneCard.id, oneCard.isFavorite));
+  };
+
   return (
     <article
       className="cities__place-card place-card"
@@ -33,7 +43,11 @@ function Card({oneCard, onMouseEnter, onMouseLeave}: CardProps): JSX.Element {
             </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`${oneCard.isFavorite? 'place-card__bookmark-button--active': ''} place-card__bookmark-button button`}
+            type="button"
+            onClick={handleFavorites}
+          >
             <svg
               className="place-card__bookmark-icon"
               width="18"

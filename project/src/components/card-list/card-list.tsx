@@ -7,7 +7,9 @@ function CardList ({cardInfo, onListItemHover}: CardListType): JSX.Element {
 
   const onHover = (activeId: number) => {
     setActiveCard(activeId);
-    onListItemHover(activeId);
+    if (onListItemHover) {
+      onListItemHover(activeId);
+    }
   };
 
   return (

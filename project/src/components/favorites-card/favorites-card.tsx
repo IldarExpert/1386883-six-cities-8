@@ -1,14 +1,15 @@
 import {Link} from 'react-router-dom';
 import type {FavoriteProps} from './type';
 
-function FavoritesCard ({oneCard}: FavoriteProps): JSX.Element {
+function FavoritesCard ({oneCard, handleFavorites}: FavoriteProps): JSX.Element {
+
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${oneCard.id}`}>
           <img
             className="place-card__image"
-            src="img/apartment-small-03.jpg"
+            src={oneCard.previewImage}
             width="150"
             height="110"
             alt="Place"
@@ -23,7 +24,11 @@ function FavoritesCard ({oneCard}: FavoriteProps): JSX.Element {
             </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button
+            className={`place-card__bookmark-button ${oneCard.isFavorite? 'place-card__bookmark-button--active' : ''} button`}
+            type="button"
+            onClick={handleFavorites}
+          >
             <svg
               className="place-card__bookmark-icon"
               width="18"

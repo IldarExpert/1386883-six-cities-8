@@ -1,27 +1,39 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+// import { connect, ConnectedProps } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import Favorites from '../favorites/favorites';
 import Login from '../login/login';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Main from '../main/main';
 import NotFound404 from '../not-found-404/not-found-404';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
-import type AppProps from './type';
+
+// import type AppProps from './type';
 import {AppRoute} from '../../const';
-import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/state';
-import LoadingScreen from '../loading-screen/loading-screen';
 
-const mapStateToProps  = ({authorizationStatus, isDataLoaded, cardListAllCity}: State) => ({
-  authorizationStatus,
-  isDataLoaded,
-  cardInfo: cardListAllCity,
-});
+// import { State } from '../../types/state';
+import { getIsDataLoaded } from '../../store/user-reduser/selectors';
+import { getCardListAllCity } from '../../store/offer-List-reduser/selectors';
+import { getComments } from '../../store/offer-reducer/selectors';
 
-const connector = connect(mapStateToProps);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
+// const mapStateToProps  = (state: State) => ({
+//   // authorizationStatus: getAuthorizationStatus(state),
+//   // isDataLoaded: getIsDataLoaded(state),
+//   // cardInfo: getCardListAllCity(state),
+// });
 
-function App({cardInfo, reviews, authorizationStatus, isDataLoaded}: AppProps & PropsFromRedux): JSX.Element {
+// const connector = connect(mapStateToProps);
+
+// type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(): JSX.Element {
+  const cardInfo = useSelector(getCardListAllCity);
+  const isDataLoaded = useSelector(getIsDataLoaded);
+  const reviews = useSelector(getComments);
+
   if (!isDataLoaded) {
     return (
       <LoadingScreen />
@@ -45,7 +57,7 @@ function App({cardInfo, reviews, authorizationStatus, isDataLoaded}: AppProps & 
         <PrivateRoute
           exact
           path = {AppRoute.Favorites}
-          render = {() => <Favorites cardInfo = {cardInfo} />}
+          render = {() => <Favorites />}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.SignIn}>
@@ -60,4 +72,4 @@ function App({cardInfo, reviews, authorizationStatus, isDataLoaded}: AppProps & 
 }
 
 export {App};
-export default connector(App);
+export default (App);

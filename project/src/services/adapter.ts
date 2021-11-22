@@ -1,5 +1,6 @@
+import { AuthUserDataFromServer } from '../types/auth-data';
 import type {CardOneFromServer} from '../types/cardInfo';
-import type {ReviewFromServer} from '../types/reviews';
+import type { ReviewFromServer} from '../types/reviews';
 
 export const convertOneCity = (oneCity: CardOneFromServer) => ({
   bedrooms: oneCity.bedrooms,
@@ -52,3 +53,12 @@ export const convertOneComment = (oneComment: ReviewFromServer) => (  {
 });
 
 export const convertComments = (comments: ReviewFromServer[]) => comments.map(convertOneComment);
+
+export const convertAuthData = (authData: AuthUserDataFromServer) => (  {
+  avatarUrl: authData.avatar_url,
+  email: authData.email,
+  id: authData.id,
+  isPro: authData.is_pro,
+  name: authData.name,
+  token: authData.token,
+});

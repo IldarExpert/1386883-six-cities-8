@@ -11,20 +11,26 @@ import {
   loadNearby,
   loadOneOfferError,
   changeLoadCommentsStatus,
-  sortCardListAction
+  sortCardListAction,
+  updateFavorites,
+  loadFavorites,
+  saveAuthData
 } from '../store/action';
 
 export enum ActionType {
-  ChangeCurrentCity = 'main/changeCurrentCity',
-  LoadCityList = 'data/loadCityList',
-  LoadOneCity = 'data/loadOneCity',
+  ChangeCurrentCity = 'offerList/changeCurrentCity',
+  LoadCityList = 'offerList/loadCityList',
+  LoadOneCity = 'offer/loadOneCity',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
-  LoadComments = 'data/loadComments',
-  LoadNearby = 'data/loadNearby',
-  LoadOneOfferError = 'data/loadOneOfferError',
-  ChangeLoadCommentsStatus = 'review/changeLoadCommentsStatus',
-  SortCardList = 'main/sortCardList'
+  LoadComments = 'offer/loadComments',
+  LoadNearby = 'offer/loadNearby',
+  LoadOneOfferError = 'offer/loadOneOfferError',
+  ChangeLoadCommentsStatus = 'offer/changeLoadCommentsStatus',
+  SortCardList = 'offerList/sortCardList',
+  UpdateFavorites = 'favorites/updateFavorites',
+  LoadFavorites = 'favorites/loadFavorites',
+  SaveAuthData = 'user/saveAuthData'
 }
 
 export type Actions =
@@ -37,7 +43,10 @@ export type Actions =
 | ReturnType<typeof loadNearby>
 | ReturnType<typeof loadOneOfferError>
 | ReturnType<typeof changeLoadCommentsStatus>
-| ReturnType<typeof sortCardListAction>;
+| ReturnType<typeof sortCardListAction>
+| ReturnType<typeof updateFavorites>
+| ReturnType<typeof loadFavorites>
+| ReturnType<typeof saveAuthData>;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 

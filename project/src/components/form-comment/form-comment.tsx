@@ -7,9 +7,10 @@ import {
   Fragment
 } from 'react';
 import {
-  connect,
-  ConnectedProps,
-  useDispatch
+  // connect,
+  // ConnectedProps,
+  useDispatch,
+  useSelector
 } from 'react-redux';
 
 import { sendCommentAction } from '../../store/api-actions';
@@ -19,25 +20,28 @@ import {
   MAX_COMMENT_LENGTH,
   Ratings
 } from '../../const';
-import { State } from '../../types/state';
+// import { State } from '../../types/state';
+import { getIsCommentPosted } from '../../store/offer-reducer/selectors';
 
-const mapStateToProps = ({comments, isCommentPosted}: State) => ({
-  comments,
-  isCommentPosted,
-});
+// const mapStateToProps = (state: State) => ({
+//   // comments: getComments(state),
+//   // isCommentPosted: getIsCommentPosted(state),
+// });
 
-const connector = connect(mapStateToProps);
+// const connector = connect(mapStateToProps);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
+// type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type FormCommentProps = {
   id: string,
 }
 
-function FormComment ({id, comments, isCommentPosted}: PropsFromRedux & FormCommentProps): JSX.Element {
+function FormComment ({id}: FormCommentProps): JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const [errorForm, setErrorForm] = useState(true);
+
+  const isCommentPosted = useSelector(getIsCommentPosted);
 
   const dispatch = useDispatch();
 
@@ -146,4 +150,4 @@ function FormComment ({id, comments, isCommentPosted}: PropsFromRedux & FormComm
 }
 
 export {FormComment};
-export default connector(FormComment);
+export default (FormComment);

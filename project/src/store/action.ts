@@ -2,6 +2,7 @@ import {ActionType} from '../types/action';
 import { AuthorizationStatus } from '../const';
 import { CardOneFromServer } from '../types/cardInfo';
 import { ReviewFromServer } from '../types/reviews';
+import { AuthUserDataFromServer } from '../types/auth-data';
 
 export const changeCity = (city: string) => ({
   type: ActionType.ChangeCurrentCity,
@@ -20,6 +21,11 @@ export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
 
 export const requireLogout = () => ({
   type: ActionType.RequireLogout,
+} as const);
+
+export const saveAuthData = (authData: AuthUserDataFromServer) => ({
+  type: ActionType.SaveAuthData,
+  payload: authData,
 } as const);
 
 export const loadCityList = (cityList: CardOneFromServer[]) => ({
@@ -49,4 +55,14 @@ export const loadOneOfferError = () => ({
 export const changeLoadCommentsStatus = (status: string) => ({
   type: ActionType.ChangeLoadCommentsStatus,
   payload: status,
+} as const);
+
+export const updateFavorites = (oneOffer: CardOneFromServer) => ({
+  type: ActionType.UpdateFavorites,
+  payload: oneOffer,
+} as const);
+
+export const loadFavorites = (cityListFavorites: CardOneFromServer[]) => ({
+  type: ActionType.LoadFavorites,
+  payload: cityListFavorites,
 } as const);
