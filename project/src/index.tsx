@@ -5,7 +5,6 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './components/app/app';
-// import {reviews} from './mocks/reviews';
 import {rootReducer} from './store/root-reducer';
 import {requireAuthorization} from './store/action';
 import {checkAuthAction, fetchHotelsAction} from './store/api-actions';

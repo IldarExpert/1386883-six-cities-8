@@ -3,7 +3,6 @@ import {ActionType, Actions} from '../../types/action';
 import { OfferListReduser } from '../../types/state';
 import { SortTypes } from '../../const';
 import {convertCityList} from '../../services/adapter';
-// import { CardOne } from '../types/cardInfo';
 
 
 const initialState: OfferListReduser = {

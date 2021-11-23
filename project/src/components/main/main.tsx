@@ -1,5 +1,4 @@
 import {useState} from 'react';
-// import {Link} from 'react-router-dom';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 
@@ -12,7 +11,7 @@ import Header from '../header/header';
 import Sort from '../sort/sort';
 import MainEmpty from '../main-empty/main-empty';
 
-import {/*AppRoute, AuthorizationStatus,*/ SortTypes} from '../../const';
+import { SortTypes} from '../../const';
 import type MainProps from './type';
 import type {CardOne} from '../../types/cardInfo';
 import {State} from '../../types/state';
@@ -55,7 +54,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & MainProps;
 
-function Main ({cardInfo, cardList, city, onClickCity, sortItem, onClickSort, isDataLoaded /*, authorizationStatus*/}: ConnectedComponentProps): JSX.Element {
+function Main ({cardInfo, cardList, city, onClickCity, sortItem, onClickSort, isDataLoaded }: ConnectedComponentProps): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
 

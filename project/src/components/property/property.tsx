@@ -19,7 +19,6 @@ import NotFound404 from '../not-found-404/not-found-404';
 import ReviewsList from '../reviews-list/reviews-list';
 import Header from '../header/header';
 
-// import type {CardOne} from '../../types/cardInfo';
 import PropertyProps from './type';
 import {State} from '../../types/state';
 
@@ -47,25 +46,17 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
     dispatch(fetchOneOfferAction(id));
     dispatch(fetchOfferNearbyAction(id));
     dispatch(fetchOfferCommentsAction(id));
-  }, [dispatch, id, oneOffer]);
+  }, [dispatch, id]);
 
 
   const handleFavorites = () => {
     if (authorizationStatus === AuthorizationStatus.Auth){
       dispatch(sendFavoriteAction(oneOffer.id, oneOffer.isFavorite));
+      dispatch(fetchOneOfferAction(id));
       return;
     }
     history.push(AppRoute.SignIn);
   };
-
-
-  // const [selectedPoint, setSelectedPoint] = useState<CardOne | undefined>(undefined);
-
-  // const onListItemHover = (activeId: number) => {
-  //   const currentPoint = cardInfo?.find((point) => point.id === activeId);
-
-  //   // setSelectedPoint(currentPoint);
-  // };
 
   const propertyItem = oneOffer;
 

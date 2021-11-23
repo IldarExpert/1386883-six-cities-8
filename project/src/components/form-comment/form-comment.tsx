@@ -7,8 +7,6 @@ import {
   Fragment
 } from 'react';
 import {
-  // connect,
-  // ConnectedProps,
   useDispatch,
   useSelector
 } from 'react-redux';
@@ -20,17 +18,8 @@ import {
   MAX_COMMENT_LENGTH,
   Ratings
 } from '../../const';
-// import { State } from '../../types/state';
 import { getIsCommentPosted } from '../../store/offer-reducer/selectors';
 
-// const mapStateToProps = (state: State) => ({
-//   // comments: getComments(state),
-//   // isCommentPosted: getIsCommentPosted(state),
-// });
-
-// const connector = connect(mapStateToProps);
-
-// type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type FormCommentProps = {
   id: string,

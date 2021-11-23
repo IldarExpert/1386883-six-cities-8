@@ -1,5 +1,4 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-// import { connect, ConnectedProps } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 import Favorites from '../favorites/favorites';
@@ -10,24 +9,12 @@ import NotFound404 from '../not-found-404/not-found-404';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
 
-// import type AppProps from './type';
 import {AppRoute} from '../../const';
 
-// import { State } from '../../types/state';
 import { getIsDataLoaded } from '../../store/user-reduser/selectors';
 import { getCardListAllCity } from '../../store/offer-List-reduser/selectors';
 import { getComments } from '../../store/offer-reducer/selectors';
 
-
-// const mapStateToProps  = (state: State) => ({
-//   // authorizationStatus: getAuthorizationStatus(state),
-//   // isDataLoaded: getIsDataLoaded(state),
-//   // cardInfo: getCardListAllCity(state),
-// });
-
-// const connector = connect(mapStateToProps);
-
-// type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(): JSX.Element {
   const cardInfo = useSelector(getCardListAllCity);

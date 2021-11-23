@@ -9,7 +9,6 @@ import FavoritesCard from '../favorites-card/favorites-card';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import Header from '../header/header';
 import { CardOne } from '../../types/cardInfo';
-// import type {FavoritesProps} from './type';
 
 
 function Favorites (): JSX.Element {
