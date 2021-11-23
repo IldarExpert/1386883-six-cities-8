@@ -18,7 +18,6 @@ function Favorites (): JSX.Element {
 
   const handleFavorites = (oneCard: CardOne) => {
     dispatch(sendFavoriteAction(oneCard.id, oneCard.isFavorite));
-    dispatch(fetchFavoriteAction());
   };
 
   useEffect(() => {

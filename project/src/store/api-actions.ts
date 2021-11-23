@@ -9,7 +9,10 @@ import {
   changeLoadCommentsStatus,
   updateFavorites,
   loadFavorites,
-  saveAuthData
+  saveAuthData,
+  updateNearby,
+  updateOneOffer,
+  updateCardList
 } from '../store/action';
 
 import { ThunkActionResult } from '../types/action';
@@ -93,7 +96,10 @@ export const sendFavoriteAction = (id: number, isFavorite: boolean): ThunkAction
     const favoriteStatus = isFavorite? 0: 1;
     const {data} = await api.post<CardOneFromServer>(`${ApiRoute.Favorite}/${id}/${favoriteStatus}`);
     dispatch(updateFavorites(data));
-    dispatch(fetchHotelsAction());
+    dispatch(updateCardList(data.id, data.is_favorite));
+    dispatch(updateOneOffer(data));
+    dispatch(updateNearby(data.id, data.is_favorite));
+    dispatch(fetchFavoriteAction());
   };
 
 export const fetchFavoriteAction = (): ThunkActionResult =>

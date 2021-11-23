@@ -24,7 +24,6 @@ const mapStateToProps = (state: State) => ({
   cardList: getCardList(state),
   sortItem: getSortItem(state),
   isDataLoaded: getIsDataLoaded(state),
-  // authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({

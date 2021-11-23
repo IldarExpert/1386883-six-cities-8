@@ -28,6 +28,17 @@ const offerListReduser = (state = initialState, action: Actions): OfferListRedus
         ...state,
         sortItem: action.payload,
       };
+    case ActionType.UpdateCardList:
+      return {
+        ...state,
+        cardList: state.cardList.map((oneCard) => {
+          if(oneCard.id === action.payload.id){
+            oneCard.isFavorite = action.payload.isFavorite;
+            return oneCard;
+          }
+          return oneCard;
+        }),
+      };
     case ActionType.LoadCityList:
       return {
         ...state,

@@ -33,14 +33,29 @@ export const loadCityList = (cityList: CardOneFromServer[]) => ({
   payload: cityList,
 } as const);
 
+export const updateCardList = (id: number, isFavorite: boolean) => ({
+  type: ActionType.UpdateCardList,
+  payload: {id, isFavorite},
+} as const);
+
 export const loadOneOffer = (oneOffer: CardOneFromServer) => ({
   type: ActionType.LoadOneCity,
+  payload: oneOffer,
+} as const);
+
+export const updateOneOffer = (oneOffer: CardOneFromServer) => ({
+  type: ActionType.UpdateOneOffer,
   payload: oneOffer,
 } as const);
 
 export const loadNearby = (cityListNearby: CardOneFromServer[]) => ({
   type: ActionType.LoadNearby,
   payload: cityListNearby,
+} as const);
+
+export const updateNearby = (id: number, isfavoritesStatus: boolean ) => ({
+  type: ActionType.UpdateNearby,
+  payload: {id, isfavoritesStatus},
 } as const);
 
 export const loadComments = (comments: ReviewFromServer[]) => ({

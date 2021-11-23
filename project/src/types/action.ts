@@ -14,7 +14,10 @@ import {
   sortCardListAction,
   updateFavorites,
   loadFavorites,
-  saveAuthData
+  saveAuthData,
+  updateNearby,
+  updateOneOffer,
+  updateCardList
 } from '../store/action';
 
 export enum ActionType {
@@ -30,7 +33,10 @@ export enum ActionType {
   SortCardList = 'offerList/sortCardList',
   UpdateFavorites = 'favorites/updateFavorites',
   LoadFavorites = 'favorites/loadFavorites',
-  SaveAuthData = 'user/saveAuthData'
+  SaveAuthData = 'user/saveAuthData',
+  UpdateNearby = 'offer/updateNearby',
+  UpdateOneOffer = 'offer/updateOneOffer',
+  UpdateCardList = 'offerList/updateCardList',
 }
 
 export type Actions =
@@ -46,7 +52,10 @@ export type Actions =
 | ReturnType<typeof sortCardListAction>
 | ReturnType<typeof updateFavorites>
 | ReturnType<typeof loadFavorites>
-| ReturnType<typeof saveAuthData>;
+| ReturnType<typeof saveAuthData>
+| ReturnType<typeof updateNearby>
+| ReturnType<typeof updateOneOffer>
+| ReturnType<typeof updateCardList>;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 

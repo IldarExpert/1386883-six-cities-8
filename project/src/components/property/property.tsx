@@ -52,7 +52,6 @@ function Property ({loadOneOfferError, cardInfo, oneOffer, nearbyOffers, comment
   const handleFavorites = () => {
     if (authorizationStatus === AuthorizationStatus.Auth){
       dispatch(sendFavoriteAction(oneOffer.id, oneOffer.isFavorite));
-      dispatch(fetchOneOfferAction(id));
       return;
     }
     history.push(AppRoute.SignIn);

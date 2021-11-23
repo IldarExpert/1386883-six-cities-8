@@ -1,15 +1,21 @@
-import {Link} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {Link, useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import { sendFavoriteAction } from '../../store/api-actions';
 import type {CardProps} from './type';
+import { getAuthorizationStatus } from '../../store/user-reduser/selectors';
+import { AuthorizationStatus, AppRoute } from '../../const';
 
 function Card({oneCard, onMouseEnter, onMouseLeave}: CardProps): JSX.Element {
 
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+
   const handleFavorites = () => {
-    dispatch(sendFavoriteAction(oneCard.id, oneCard.isFavorite));
+    authorizationStatus === AuthorizationStatus.Auth?
+      dispatch(sendFavoriteAction(oneCard.id, oneCard.isFavorite)):
+      history.push(AppRoute.SignIn);
   };
 
   return (

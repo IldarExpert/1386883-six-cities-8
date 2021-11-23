@@ -55,10 +55,26 @@ const offerReducer = (state = initialState, action: Actions): OfferReducer => {
         oneOffer: convertOneCity(action.payload),
         loadOneOfferError: false,
       };
+    case ActionType.UpdateOneOffer:
+      return {
+        ...state,
+        oneOffer: convertOneCity(action.payload),
+      };
     case ActionType.LoadNearby:
       return {
         ...state,
         nearbyOffers: convertCityList(action.payload),
+      };
+    case ActionType.UpdateNearby:
+      return {
+        ...state,
+        nearbyOffers: state.nearbyOffers.map((oneOffer) => {
+          if (oneOffer.id === action.payload.id) {
+            oneOffer.isFavorite = action.payload.isfavoritesStatus;
+            return oneOffer;
+          }
+          return oneOffer;
+        }),
       };
     case ActionType.LoadComments:
       return {
