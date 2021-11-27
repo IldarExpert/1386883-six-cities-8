@@ -42,7 +42,6 @@ const initialState: OfferReducer = {
   nearbyOffers: [],
   comments: [],
   loadOneOfferError: false,
-  isDataLoaded: false,
   isCommentPosted: LoadCommentsStatus.UnSet,
 };
 

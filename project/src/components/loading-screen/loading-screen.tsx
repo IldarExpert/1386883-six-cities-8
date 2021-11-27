@@ -1,14 +1,10 @@
+import {PreloaderStyle, PreloaderBackgroundStyle} from './style';
+
 function LoadingScreen(): JSX.Element {
   return (
     <div>
       <div
-        style = {{
-          position: 'absolute',
-          left: '50%',
-          marginLeft: '-19px',
-          top: '50%',
-          marginTop: '-19px',
-        }}
+        style = {PreloaderStyle as React.CSSProperties}
       >
         <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -45,15 +41,7 @@ function LoadingScreen(): JSX.Element {
         </svg>
       </div>
       <div
-        style = {{
-          background: 'rgba(0, 0, 0, 0.115)',
-          overflow: 'hidden',
-          position: 'fixed',
-          left: '0',
-          top: '0',
-          right:'0',
-          bottom:'0',
-        }}
+        style = {PreloaderBackgroundStyle as React.CSSProperties}
       >
       </div>
     </div>

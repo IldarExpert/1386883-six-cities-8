@@ -8,7 +8,6 @@ export type OfferReducer = {
   nearbyOffers: CardList,
   oneOffer: CardOne,
   comments: Reviews,
-  isDataLoaded: boolean,
   loadOneOfferError: boolean,
   isCommentPosted: string,
 }
