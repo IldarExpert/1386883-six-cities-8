@@ -4,7 +4,7 @@ import { LoadCommentsStatus } from '../../const';
 import {convertCityList, convertOneCity, convertComments} from '../../services/adapter';
 
 
-const initialState: OfferReducer = {
+export const initialState: OfferReducer = {
   oneOffer: {
     'bedrooms': 0,
     'city': {

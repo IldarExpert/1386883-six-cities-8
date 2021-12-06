@@ -111,6 +111,7 @@ function Login ({onsubmit, authorizationStatus}: PropsFromRedux): JSX.Element {
                   name="email"
                   placeholder="Email"
                   required
+                  data-testid = "email"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -122,6 +123,7 @@ function Login ({onsubmit, authorizationStatus}: PropsFromRedux): JSX.Element {
                   name="password"
                   placeholder="Password"
                   required
+                  data-testid="password"
                 />
               </div>
               <button
@@ -134,7 +136,7 @@ function Login ({onsubmit, authorizationStatus}: PropsFromRedux): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/#">
+              <a className="locations__item-link" href="/">
                 <span>Amsterdam</span>
               </a>
             </div>
